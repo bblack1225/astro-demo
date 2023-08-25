@@ -1,7 +1,10 @@
 ---
+import "../styles/global.css";
+import Header from "../components/Header.astro";
 const { frontmatter } = Astro.props;
 ---
 
+<Header />
 <h1>{frontmatter.title}</h1>
 <p>Written by {frontmatter.author}</p>
 <p>Published on {frontmatter.pubDate.slice(0, 10)}</p>
@@ -12,8 +15,8 @@ const { frontmatter } = Astro.props;
         <a
           href={`/tags/${tag}`}
           style="margin-left: 10px; text-decoration: none; 
-          background-color: #eee; padding: 5px; border-radius: 15px; font-weight: bold; font-size: 1.2rem;
-          color: darkblue;"
+          background-color: darkblue; padding: 5px 8px 5px 8px; border-radius: 12px; font-weight: bold; font-size: 1.2rem;
+          color: #dcdbdb;"
         >
           #{tag}
         </a>
