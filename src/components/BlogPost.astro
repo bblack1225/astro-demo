@@ -1,0 +1,19 @@
+---
+const { url, title, pubDate } = Astro.props;
+---
+
+<style>
+  li {
+    margin-bottom: 0.5rem;
+  }
+
+  a {
+    font-size: 1.25rem;
+    font-weight: bold;
+    text-decoration: none;
+  }
+</style>
+<li>
+  <a href={url}>{title}</a>
+  <p><i>Posted by {pubDate.slice(0, 10)}</i></p>
+</li>
