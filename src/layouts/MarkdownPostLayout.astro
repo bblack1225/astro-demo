@@ -7,21 +7,46 @@ const { frontmatter } = Astro.props;
 <BaseLayout pageTitle={frontmatter.title}>
   <p>Written by {frontmatter.author}</p>
   <p>Published on {frontmatter.pubDate.slice(0, 10)}</p>
-  <div>
+  <div class="tags">
     {
       frontmatter.tags.map((tag) => (
-        <>
-          <a
+      <p>    
+      <a   class="tag"
             href={`/tags/${tag}`}
-            style="margin-left: 10px; text-decoration: none; 
-          background-color: darkblue; padding: 5px 8px 5px 8px; border-radius: 12px; font-weight: bold; font-size: 1.2rem;
-          color: #dcdbdb;"
+          
           >
             #{tag}
           </a>
-        </>
+          </p>
       ))
     }
     <slot />
   </div>
 </BaseLayout>
+
+<style>
+     a {
+        color: #00539F;
+    }
+
+    .tags {
+        display: flex;
+        flex-wrap: wrap;
+        margin: 0 auto;
+    }
+
+    .tag {
+        margin: 0.25rem;
+        border: 1px dotted #a1a1a1;
+        border-radius:0.5em;
+        padding: .5rem 1em;
+        font-size:1.15em;
+        background-color:#F8FCFD;
+        font-weight:bold;
+        text-decoration:none;
+    }
+
+    .tag:hover {
+        background-color:#E8F4F7;
+    }
+</style>
