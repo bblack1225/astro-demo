@@ -1,6 +1,6 @@
 ---
-import '../styles/global.css';
-import BaseLayout from './BaseLayout.astro';
+import "../styles/global.css";
+import BaseLayout from "./BaseLayout.astro";
 const { frontmatter } = Astro.props;
 ---
 
@@ -10,43 +10,40 @@ const { frontmatter } = Astro.props;
   <div class="tags">
     {
       frontmatter.tags.map((tag) => (
-      <p>    
-      <a   class="tag"
-            href={`/tags/${tag}`}
-          
-          >
+        <p>
+          <a class="tag" href={`/tags/${tag}`}>
             #{tag}
           </a>
-          </p>
+        </p>
       ))
     }
-    <slot />
   </div>
+  <slot />
 </BaseLayout>
 
 <style>
-     a {
-        color: #00539F;
-    }
+  a {
+    color: #00539f;
+  }
 
-    .tags {
-        display: flex;
-        flex-wrap: wrap;
-        margin: 0 auto;
-    }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+  }
 
-    .tag {
-        margin: 0.25rem;
-        border: 1px dotted #a1a1a1;
-        border-radius:0.5em;
-        padding: .5rem 1em;
-        font-size:1.15em;
-        background-color:#F8FCFD;
-        font-weight:bold;
-        text-decoration:none;
-    }
+  .tag {
+    margin: 0.25rem;
+    border: 1px dotted #a1a1a1;
+    border-radius: 0.5em;
+    padding: 0.5rem 1em;
+    font-size: 1.15em;
+    background-color: #f8fcfd;
+    font-weight: bold;
+    text-decoration: none;
+  }
 
-    .tag:hover {
-        background-color:#E8F4F7;
-    }
+  .tag:hover {
+    background-color: #e8f4f7;
+  }
 </style>
