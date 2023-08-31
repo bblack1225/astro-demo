@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Footer from "../components/Footer.astro";
 import Header from "../components/Header.astro";
+import ViewTransitions from "astro/components/ViewTransitions.astro";
 const { pageTitle } = Astro.props;
 ---
 
@@ -12,6 +13,7 @@ const { pageTitle } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <meta name="generator" content={Astro.generator} />
     <title>{pageTitle}</title>
+    <ViewTransitions />
   </head>
   <body>
     <Header />
@@ -20,8 +22,21 @@ const { pageTitle } = Astro.props;
       <slot />
     </div>
     <Footer />
-    <script>
-      import "../scripts/menu.js";
-    </script>
   </body>
 </html>
+
+<script>
+  function theme(){
+    // 如果 localStorage 有存theme為dark，或是系統預設為dark模式，就加上dark class
+    if (localStorage.theme === 'dark' || 
+    (!('theme' in localStorage) && 
+    window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+      document.documentElement.classList.add('dark')
+    }else {
+    document.documentElement.classList.remove('dark')
+    }
+  };
+
+  theme();
+  document.addEventListener('astro:after-swap', theme)
+</script>
