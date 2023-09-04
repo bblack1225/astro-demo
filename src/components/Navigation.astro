@@ -1,13 +1,32 @@
 ---
-import ThemeIcon from "./ThemeIcon.astro";
+import ThemeIcon from './ThemeIcon.astro';
+const links = [
+  { href: '/', text: 'Home' },
+  { href: '/about', text: 'About' },
+  { href: '/blog', text: 'Blog' },
+  { href: '/tags', text: 'Tag' },
+];
+const { pathname } = Astro.url;
+console.log('pathname', pathname);
 ---
 
 <div class="nav-links">
   <div>
+    {
+      links.map((link) => {
+        return (
+          <a href={link.href} class={pathname === link.href ? 'active' : ''}>
+            {link.text}
+          </a>
+        );
+      })
+    }
+  </div>
+  <!-- <div>
     <a href="/">Home</a>
     <a href="/about">About</a>
     <a href="/blog">Blog</a>
-    <a href="/tags">Tag</a>
-  </div>
+    <a href="/tags" class="active">Tag</a>
+  </div> -->
   <ThemeIcon />
 </div>

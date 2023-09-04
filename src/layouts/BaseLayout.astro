@@ -1,8 +1,8 @@
 ---
-import "../styles/global.css";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import ViewTransitions from "astro/components/ViewTransitions.astro";
+import '../styles/global.css';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { ViewTransitions } from 'astro:transitions';
 const { pageTitle } = Astro.props;
 ---
 
@@ -22,21 +22,22 @@ const { pageTitle } = Astro.props;
       <slot />
     </div>
     <Footer />
+    <script>
+      function theme() {
+        // 如果 localStorage 有存theme為dark，或是系統預設為dark模式，就加上dark class
+        if (
+          localStorage.theme === 'dark' ||
+          (!('theme' in localStorage) &&
+            window.matchMedia('(prefers-color-scheme: dark)').matches)
+        ) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+      }
+
+      theme();
+      document.addEventListener('astro:page-load', theme);
+    </script>
   </body>
 </html>
-
-<script>
-  function theme(){
-    // 如果 localStorage 有存theme為dark，或是系統預設為dark模式，就加上dark class
-    if (localStorage.theme === 'dark' || 
-    (!('theme' in localStorage) && 
-    window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-      document.documentElement.classList.add('dark')
-    }else {
-    document.documentElement.classList.remove('dark')
-    }
-  };
-
-  theme();
-  document.addEventListener('astro:after-swap', theme)
-</script>

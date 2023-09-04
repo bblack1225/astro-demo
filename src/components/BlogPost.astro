@@ -1,5 +1,11 @@
 ---
-const { url, title, pubDate } = Astro.props;
+import type { CollectionEntry } from 'astro:content';
+
+type Props = {
+  post: CollectionEntry<'posts'>;
+};
+
+const { post } = Astro.props;
 ---
 
 <style>
@@ -14,5 +20,5 @@ const { url, title, pubDate } = Astro.props;
   }
 </style>
 <li>
-  <a href={url}>{title}</a>
+  <a href={`/posts/` + post.slug}>{post.data.title}</a>
 </li>

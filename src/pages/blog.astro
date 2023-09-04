@@ -6,14 +6,11 @@ import { getCollection } from 'astro:content';
 
 const pageTitle = 'My Astro Learning Blog';
 const allPosts = await getCollection('posts');
+console.log('allPosts', allPosts);
 ---
 
 <BaseLayout pageTitle={pageTitle}>
   <ul>
-    {
-      allPosts.map((post) => (
-        <BlogPost url={'/posts/' + post.slug} title={post.data.title} />
-      ))
-    }
+    {allPosts.map((post) => <BlogPost post={post} />)}
   </ul>
 </BaseLayout>

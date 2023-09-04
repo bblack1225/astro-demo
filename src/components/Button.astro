@@ -1,0 +1,17 @@
+---
+type Props = {
+  title: string;
+};
+
+const { title } = Astro.props;
+---
+
+<button id="btn">{title}</button>
+
+<script is:inline>
+function onClick() {
+    alert('Hello World!');
+}
+
+document.getElementById('btn').addEventListener('click', onClick);
+</script>
