@@ -37,7 +37,7 @@ const { pageTitle } = Astro.props;
       }
 
       theme();
-      document.addEventListener('astro:page-load', theme);
+      document.addEventListener('astro:after-swap', theme);
     </script>
   </body>
 </html>
